@@ -1,7 +1,42 @@
+/ /* global */
+*,
+*:before,
+*:after {
+ border: 1px red solid;
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+header {
+  background-color: #322A2F;
+  display: flex;
+  justify-content: space-between;
+}
+/* header */
+
+h1 {
+  color: #B2A1B1;
+  margin-left: 1em;
+  width: 30%;
+}
+
+.search-bar {
+  display: flex;
+  height: 25px;
+  margin-top: 1.7em;
+  margin-right: 1em;
+  width: 30%;
+}
+
+.search-bar input {
+  width: 90%;
+}
+
+.header-span {
+  color: #FFF;
+}
+
 /* global */
 
 /* nav */
-
-/* top */
-
-/* bottom */
