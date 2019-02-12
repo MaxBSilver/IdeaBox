@@ -9,6 +9,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
+
 /* header */
 
 header {
@@ -25,21 +26,21 @@ h1 {
 .search-bar {
   display: flex;
   height: 25px;
-  margin-top: 1.7em;
   margin-right: 1em;
+  margin-top: 1.7em;
   width: 30%;
 }
 
 .search-bar input {
-  width: 90%;
   border: solid 2px #d2cccd;
+  width: 90%;
 }
 
 .search-btn {
-  color: #FFF;
   background-color: #d2cccd;
   border-radius: 0px 5px 5px 0px;
   border: solid 2px #d2cccd;
+  color: #FFF;
   height: 25px;
 }
 
@@ -49,6 +50,7 @@ h1 {
 
 
 /* top */
+
 .creator {
   align-items: center;
   background-color: #EAEAEA;
@@ -59,12 +61,12 @@ h1 {
 }
 
 .input-wrapper {
-  width: 60%;
-  flex-direction: column;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   height: 350px;
+  justify-content: space-around;
   padding: 10px;
+  width: 60%;
 }
 
 .creator-label {
@@ -80,32 +82,33 @@ h1 {
 }
 
 .creator-input {
-  width: 100%;
   border-radius: 5px;
   margin-bottom: 15px;
+  width: 100%;
 }
 .creator-submit {
   height: 40px;
 }
+
 button.save-btn {
-  height:40px;
   background-color: #5E5C6B;
   color: #FFF;
   font-weight: 800;
+  height:40px;
 }
 
 /* bottom */
 
 .card {
+  border-radius: 5px;
   border: 2px solid #d2cccd;
   display: grid;
   grid-template-rows: 4fr 1fr;
+  height: 200px;
   margin: 50px auto 20px auto;
   min-height: 200px;
-  height: 200px;
   padding: 0px 16px;
   width: 57%;
-  border-radius: 5px;
 }
 
 .card-title {
@@ -119,8 +122,8 @@ button.save-btn {
 }
 
 .card-text {
-  font-size: 18px;
   color: #6A686A;
+  font-size: 18px;
 }
 
 .card-bottom {
@@ -129,11 +132,11 @@ button.save-btn {
 }
 
 .card-bottom-text {
-  margin-top: 0;
+  color: #6A686A;
   font-size: 17px;
   font-weight: 800;
+  margin-top: 0;
   padding: 8px 0px 0px 8px;
-  color: #6A686A;
 }
 
 .card-btn {
