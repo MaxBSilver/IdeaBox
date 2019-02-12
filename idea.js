@@ -1,12 +1,15 @@
 class Idea {
-  constructor(title, body) {
+  constructor(title, body, ideas) {
     this.title = title;
     this.body = body;
+    ideas = JSON.parse(ideas);
+    this.id = ideas.length + 1;
     this.quality = 'Swill';
+    this.saveToStorage();
   }
   saveToStorage() {
-    var stringyIdea = JSON.stringify(this.Idea);
-    localStorage.setItem('idea', stringyIdea);
+    var stringyIdeas = JSON.stringify(ideas);
+    localStorage.setItem('ideas', stringyIdeas);
   }
   deleteFromStorage() {
     localStorage.removeItem(stringyIdea);
