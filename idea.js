@@ -1,12 +1,12 @@
 class Idea {
-  constructor(title, body, quality) {
+  constructor(title, body) {
     this.title = title;
     this.body = body;
-    this.quality = quality;
+    this.quality = 'Swill';
   }
   saveToStorage() {
-    var stringyIdea = JSON.strinify(this.Idea);
-    localStorage.newItem(stringyIdea);
+    var stringyIdea = JSON.stringify(this.Idea);
+    localStorage.setItem('idea', stringyIdea);
   }
   deleteFromStorage() {
     localStorage.removeItem(stringyIdea);
@@ -18,5 +18,3 @@ class Idea {
 
   }
 }
-
-module.exports = Idea;
