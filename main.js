@@ -4,7 +4,7 @@
   var cardBodyEl = document.querySelector('.body-input');
   var storageEl = document.querySelector('.storage');
   var qualityEl = document.querySelector('.quality');
-  var ideas; 
+  var ideas, newIdea; 
 
 
 
@@ -23,15 +23,14 @@ function saveButton(event) {
   var cardBodyVal = cardBodyEl.value;
   generateCard(cardBodyVal, cardTitleVal);
   createIdea(cardBodyVal, cardTitleVal);
-  saveToStorage(ideas);
+  newIdea.saveToStorage();
 }
 
 function createIdea(cardBodyVal, cardTitleVal) {
   ideas = localStorage.getItem('ideas') || '[]';
-  var newIdea = new Idea(cardTitleVal, cardBodyVal);
+  newIdea = new Idea(cardTitleVal, cardBodyVal, ideas);
   ideas = JSON.parse(ideas);
   ideas.push(newIdea);
-  console.log(ideas);
 }
 
 function generateCard(cardBodyVal, cardTitleVal) { 
@@ -50,12 +49,6 @@ function generateCard(cardBodyVal, cardTitleVal) {
   storageEl.insertAdjacentHTML('afterbegin', card);
 }
 
-function saveToStorage(ideas) {
-  console.log(ideas);
-  var stringyIdeas = JSON.stringify(ideas);
-  console.log(stringyIdeas);
-  localStorage.setItem('ideas', stringyIdeas);
-}
 
 
 
