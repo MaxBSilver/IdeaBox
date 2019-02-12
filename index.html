@@ -12,7 +12,7 @@
       <h1>ideabox<span class="header-span">triples</span></h1>
       <div class="search-bar">
         <input type="text" placeholder="Search">
-        <button><i class="fas fa-search"></i></button>
+        <button class="search-btn"><i class="fas fa-search"></i></button>
     </div>   
   </header>
   <main>
@@ -21,20 +21,24 @@
        <label class="creator-label"> Title </label>
         <input class="creator-input title-input" type="text" name="title">
         <label class="creator-label"> Body </label>
-        <input class="creator-input body-input" type="text" name="body">
+        <textarea class="creator-input body-input" type="text" name="body"></textarea>
         <button class="save-btn creator-input"> Save </button>
       </div>
     </section>
     <section class="storage">
       <!-- placeholder card -->
-      <article class="card">
-        <h2>Lorem ipsum</h2>
-        <p> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but </p>
-        <button>upvote</button>
-        <button>downvote</button>
-        <h3>Quality:<span>Swill</span></h3>
-        <button>x</button>
-      </article>
+      <section class="card">
+        <article class="card-body">
+          <h2 class="card-title">Lorem ipsum</h2>
+          <p class="card-text"> Lorem ipsum dolor sit amet, consectetur adipiscing pharetra nisi et luctuselit. Sed mollis mollis est id molestie. Donec faucibus interdum malesuada.</p>
+        </article>
+        <article class="card-bottom">
+          <img class="card-btn" src="image-assets/upvote.svg">
+          <img class="card-btn" src="image-assets/downvote.svg">
+          <p class="card-bottom-text">Quality: Swill</p>
+          <img class="card-btn" src="image-assets/delete.svg">
+        </article>
+      </section>
     </section>
   </main>
 </body>
