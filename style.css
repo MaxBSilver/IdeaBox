@@ -44,6 +44,9 @@ h1 {
   border: solid 2px #d2cccd;
   width: 90%;
   border-radius: 5px 0 0 5px;
+  font-size: 32px;
+  height: 45px;
+  padding: 10px 15px;
 }
 
 .search-btn {
@@ -51,7 +54,8 @@ h1 {
   border-radius: 0px 5px 5px 0px;
   border: solid 2px #d2cccd;
   color: #FFF;
-  height: 25px;
+  height: 45px;
+  width: 45px;
 }
 
 .header-span {
