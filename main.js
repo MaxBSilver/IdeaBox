@@ -11,12 +11,21 @@
 
 /* Event Listeners */
 
-  saveBtnEl.addEventListener('click', saveButton);
-
-
-
+saveBtnEl.addEventListener('click', saveButton);
+window.addEventListener('load', loadCards)
 
 /* Functions */
+function loadCards() {
+  ideas = JSON.parse(localStorage.getItem('ideas'));
+  if (!ideas) {
+      return
+    } else {
+      for (var i = 0; i < ideas.length; i++) {
+      generateCard(ideas[i].title, ideas[i].body)
+    }
+  }
+}
+
 function saveButton(event) {
   event.preventDefault();
   var cardTitleVal = cardTitleEl.value;
@@ -30,7 +39,7 @@ function createIdea(cardBodyVal, cardTitleVal) {
   ideas = localStorage.getItem('ideas') || '[]';
   newIdea = new Idea(cardTitleVal, cardBodyVal, ideas);
   ideas = JSON.parse(ideas);
-  ideas.push(newIdea);
+  ideas.push(newIdea); 
 }
 
 function generateCard(cardBodyVal, cardTitleVal) { 
