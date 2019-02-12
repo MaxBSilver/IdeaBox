@@ -74,22 +74,24 @@ i {
   background-color: #EAEAEA;
   display: flex;
   flex-direction: column;
-  height: 278px;
+  height: 100%;
   justify-content: center;
 }
 
 .input-wrapper {
+  height: 278px;
   display: flex;
   flex-direction: column;
-  height: 350px;
   justify-content: space-around;
-  padding: 10px;
   width: 60%;
+  max-width: 700px;
+  margin: 20px 0;
 }
 
 .creator-label {
   display:flex;
   font-weight:300;
+  margin-bottom: 10px;
 }
 
 .title-input {
@@ -115,7 +117,8 @@ button.save-btn {
   color: #FFF;
   font-weight: 800;
   font-size:20px;
-  height:40px;
+  height: 50px;
+  margin-top: 10px;
 }
 
 label {
@@ -133,7 +136,8 @@ label {
   margin: 50px auto 20px auto;
   min-height: 200px;
   padding: 0px 16px;
-  width: 57%;
+  width: 60%;
+  max-width: 700px;
 }
 
 .card-title {
