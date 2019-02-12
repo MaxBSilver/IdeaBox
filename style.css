@@ -8,6 +8,7 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
 }
 
 input,
@@ -27,6 +28,8 @@ h1 {
   color: #B2A1B1;
   margin-left: 1em;
   width: 30%;
+  font-weight: 800;
+  font-size: 52px;
 }
 
 .search-bar {
@@ -105,6 +108,10 @@ button.save-btn {
   font-weight: 800;
   font-size:20px;
   height:40px;
+}
+
+label {
+  font-size: 24px;
 }
 
 /* bottom */
