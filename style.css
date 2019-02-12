@@ -10,6 +10,11 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+input,
+textarea {
+  border: none;
+}
+
 /* header */
 
 header {
@@ -17,6 +22,7 @@ header {
   display: flex;
   justify-content: space-between;
 }
+
 h1 {
   color: #B2A1B1;
   margin-left: 1em;
@@ -34,6 +40,7 @@ h1 {
 .search-bar input {
   border: solid 2px #d2cccd;
   width: 90%;
+  border-radius: 5px 0 0 5px;
 }
 
 .search-btn {
@@ -71,6 +78,7 @@ h1 {
 
 .creator-label {
   display:flex;
+  font-weight:300;
 }
 
 .title-input {
@@ -78,11 +86,12 @@ h1 {
 }
 
 .body-input {
-  height: 70px;
+  height: 90px;
 }
 
 .creator-input {
   border-radius: 5px;
+  border: 1px lightgrey solid;
   margin-bottom: 15px;
   width: 100%;
 }
@@ -94,6 +103,7 @@ button.save-btn {
   background-color: #5E5C6B;
   color: #FFF;
   font-weight: 800;
+  font-size:20px;
   height:40px;
 }
 
