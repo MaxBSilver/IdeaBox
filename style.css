@@ -1,7 +1,53 @@
 /* global */
-
+*,
+*:before,
+*:after {
+  /*border: 1px red solid;*/
+  box-sizing: border-box;
+}
 /* nav */
 
 /* top */
+.creator {
+  align-items: center;
+  background-color: #EAEAEA;
+  display: flex;
+  flex-direction: column;
+  height: 278px;
+  justify-content: center;
+}
+
+.input-wrapper {
+  width: 60%;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-around;
+  height: 350px;
+  padding: 10px;
+}
+
+.creator-label {
+  display:flex;
+}
+
+.title-input {
+  height:35px;
+}
+
+.body-input {
+  height: 70px;
+}
+
+.creator-input {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.creator-submit {
+  height: 40px;
+}
+button.save-btn {
+  height:40px;
+}
 
 /* bottom */
