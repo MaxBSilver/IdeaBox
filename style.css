@@ -26,7 +26,7 @@ header {
 
 h1 {
   color: #B2A1B1;
-  margin-left: 1em;
+  margin: 30px 1em;
   width: 30%;
   font-weight: 800;
   font-size: 52px;
@@ -35,8 +35,8 @@ h1 {
 .search-bar {
   display: flex;
   height: 25px;
-  margin-right: 1em;
-  margin-top: 1.7em;
+  margin-right: 30px;
+  margin-top: 37px;
   width: 30%;
 }
 
@@ -60,6 +60,10 @@ h1 {
 
 .header-span {
   color: #FFF;
+}
+
+i {
+  font-size: 28px;
 }
 
 
