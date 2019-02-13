@@ -33,6 +33,7 @@ function saveButton(event) {
   generateCard(cardBodyVal, cardTitleVal);
   createIdea(cardBodyVal, cardTitleVal);
   newIdea.saveToStorage();
+  clearInputs();
 }
 
 function createIdea(cardBodyVal, cardTitleVal) {
@@ -56,6 +57,11 @@ function generateCard(cardBodyVal, cardTitleVal) {
         </article>
       </section>`
   storageEl.insertAdjacentHTML('afterbegin', card);
+}
+
+function clearInputs() {
+  cardTitleEl.value = '';
+  cardBodyEl.value = '';
 }
 
 
