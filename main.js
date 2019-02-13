@@ -29,9 +29,12 @@ function loadCards() {
 
 function saveButton(event) {
   event.preventDefault();
-  var cardTitleVal = cardTitleEl.value;
-  var cardBodyVal = cardBodyEl.value;
+  checkInputs();
+}
 
+function checkInputs() {
+  var cardTitleVal = cardTitleEl.value;
+  var cardBodyVal = cardBodyEl.value; 
   if (!cardTitleVal || !cardBodyVal) {
     return;
   } else {
