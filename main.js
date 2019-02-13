@@ -31,9 +31,12 @@ function loadCards() {
 
 function saveButton(event) {
   event.preventDefault();
-  var cardTitleVal = cardTitleEl.value;
-  var cardBodyVal = cardBodyEl.value;
+  checkInputs();
+}
 
+function checkInputs() {
+  var cardTitleVal = cardTitleEl.value;
+  var cardBodyVal = cardBodyEl.value; 
   if (!cardTitleVal || !cardBodyVal) {
     return;
   } else {
@@ -59,8 +62,8 @@ function generateCard(cardBodyVal, cardTitleVal, ideaID) {
           <textarea class="creator-input body-input hidden" id="body-input" type="text" name="body" style="resize:none">${cardBodyVal}</textarea>
         </article>
         <article class="card-bottom">
-          <img class="card-btn" src="image-assets/upvote.svg">
-          <img class="card-btn" src="image-assets/downvote.svg">
+          <img class="card-btn" id="up-vote" src="image-assets/upvote.svg">
+          <img class="card-btn" id="down-vote" src="image-assets/downvote.svg">
           <p class="card-bottom-text">Quality: <span class="quality">Swill</span></p>
           <img class="card-btn" id="delete-card" src="image-assets/delete.svg">
         </article>
@@ -76,6 +79,18 @@ function buttonChecker(e) {
   } 
   if (e.path[1].className === "card-body" && e.target.classList[0] !== 'creator-input') {
     editCard(e);
+  }
+
+
+  if (e.target.id === 'up-vote') {
+    // Target Up Vote button
+    console.log(e.target.parentElement.parentElement.parentElement.dataset.id);
+    // updateQuality();
+  }
+  if (e.target.id === 'down-vote') {
+    // Target Down Vote button
+    console.log(e.target.parentElement.parentElement.parentElement.dataset.id);
+    // updateQuality();
   }
 }
 
