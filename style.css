@@ -23,6 +23,7 @@ button:focus {
 button {
   cursor: pointer;
 }
+
 /* header */
 
 header {
@@ -181,3 +182,6 @@ label {
   width: 30px;
 }
 
+.hidden {
+  display: none;
+}
