@@ -18,7 +18,7 @@ class Idea {
     // run saveStorage(); to save new verision of idea 
     localStorage.removeItem(stringyIdea);
   }
-  upodateContent() {
+  updateContent() {
 
   }
   updateQuality() {
