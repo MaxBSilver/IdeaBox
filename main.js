@@ -14,6 +14,8 @@
 saveBtnEl.addEventListener('click', saveButton);
 window.addEventListener('load', loadCards);
 storageEl.addEventListener('click', buttonChecker);
+storageEl.addEventListener('keyup', submitCardChange)
+
 
 /* Functions */
 function loadCards() {
@@ -47,15 +49,17 @@ function createIdea(cardBodyVal, cardTitleVal) {
   newIdea = new Idea(cardTitleVal, cardBodyVal, ideas);
   ideas = JSON.parse(ideas);
   ideas.push(newIdea); 
-  generateCard(cardBodyVal, cardTitleVal);
+  generateCard(cardBodyVal, cardTitleVal, newIdea.id);
   newIdea.saveToStorage();
 }
 
-function generateCard(cardBodyVal, cardTitleVal) { 
+function generateCard(cardBodyVal, cardTitleVal, ideaID) { 
   var card = `<section class="card-section">
-        <article class="card-body">
+        <article class="card-body" data-id=${ideaID}>
           <h2 class="card-title">${cardTitleVal}</h2>
+          <input class="creator-input title-input hidden" id="idea-input" type="text" name="title" placeholder="${cardTitleVal}">
           <p class="card-text">${cardBodyVal}</p>
+          <textarea class="creator-input body-input hidden" id="body-input" type="text" name="body" style="resize:none">${cardBodyVal}</textarea>
         </article>
         <article class="card-bottom">
           <img class="card-btn" id="up-vote" src="image-assets/upvote.svg">
@@ -72,7 +76,12 @@ function buttonChecker(e) {
   e.preventDefault();
   if (e.target.id === 'delete-card') {
     e.target.parentElement.parentElement.remove();
+  } 
+  if (e.path[1].className === "card-body" && e.target.classList[0] !== 'creator-input') {
+    editCard(e);
   }
+
+
   if (e.target.id === 'up-vote') {
     // Target Up Vote button
     console.log(e.target.parentElement.parentElement.parentElement.dataset.id);
@@ -90,9 +99,17 @@ function clearInputs() {
   cardBodyEl.value = '';
 }
 
+function editCard(e) {
+  e.target.nextElementSibling.classList.remove('hidden');
+  e.target.classList.add('hidden');
+}
 
-
-
-
+function submitCardChange(e) {
+  if (e.code === "Enter") {
+    e.target.previousElementSibling.innerText = e.srcElement.value;
+    e.target.previousElementSibling.classList.remove('hidden');
+    e.target.classList.add('hidden');
+  }
+}
 
 
