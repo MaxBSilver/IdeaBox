@@ -16,6 +16,13 @@ textarea {
   border: none;
 }
 
+button:focus {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
 /* header */
 
 header {
@@ -127,7 +134,7 @@ label {
 
 /* bottom */
 
-.card {
+.card-section {
   border-radius: 5px;
   border: 2px solid #d2cccd;
   display: grid;

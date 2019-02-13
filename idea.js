@@ -12,6 +12,10 @@ class Idea {
     localStorage.setItem('ideas', stringyIdeas);
   }
   deleteFromStorage() {
+    // Get Ideas
+    // Parse Ideas
+    // Use event trigger to remove specific idea from ideas
+    // run saveStorage(); to save new verision of idea 
     localStorage.removeItem(stringyIdea);
   }
   upodateContent() {
