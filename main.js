@@ -51,8 +51,8 @@ function createIdea(cardBodyVal, cardTitleVal) {
 }
 
 function generateCard(cardBodyVal, cardTitleVal, ideaID) { 
-  var card = `<section class="card-section">
-        <article class="card-body" data-id=${ideaID}>
+  var card = `<section class="card-section" data-id=${ideaID}>
+        <article class="card-body">
           <h2 class="card-title">${cardTitleVal}</h2>
           <input class="creator-input title-input hidden" id="idea-input" type="text" name="title" placeholder="${cardTitleVal}">
           <p class="card-text">${cardBodyVal}</p>
@@ -94,7 +94,16 @@ function submitCardChange(e) {
     e.target.previousElementSibling.innerText = e.srcElement.value;
     e.target.previousElementSibling.classList.remove('hidden');
     e.target.classList.add('hidden');
+    updateStorage(e);
   }
+}
+
+function updateStorage(e) {
+  ideas = JSON.parse(localStorage.getItem('ideas'))
+  var targetIdea = ideas.filter(function(item) {
+    return item.id === e.path[2].dataset.id;
+  })
+  console.log(targetIdea);
 }
 
 
