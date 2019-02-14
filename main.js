@@ -4,6 +4,7 @@
   var cardBodyEl = document.querySelector('.body-input');
   var storageEl = document.querySelector('.storage');
   var ideas, newIdea; 
+  var targetIdea;
 
 
 
@@ -23,7 +24,7 @@ function loadCards() {
       return false;
     } else {
       for (var i = 0; i < ideas.length; i++) {
-      generateCard(ideas[i].title, ideas[i].body, ideas[i].id)
+      generateCard(ideas[i].title, ideas[i].body, ideas[i].quality, ideas[i].id)
     }
   }
 }
@@ -43,9 +44,9 @@ function checkInputs() {
   }
 }
 
-function createIdea(cardBodyVal, cardTitleVal, qualityVal) {
+function createIdea(cardBodyVal, cardTitleVal) {
   ideas = localStorage.getItem('ideas') || '[]';
-  newIdea = new Idea(cardTitleVal, cardBodyVal, qualityVal, ideas);
+  newIdea = new Idea(cardTitleVal, cardBodyVal, ideas);
   ideas = JSON.parse(ideas);
   ideas.push(newIdea); 
   generateCard(cardBodyVal, cardTitleVal, newIdea.quality, newIdea.id);
@@ -54,7 +55,6 @@ function createIdea(cardBodyVal, cardTitleVal, qualityVal) {
 }
 
 function updateQuality() {
-  
   var currentQuality = document.querySelector('.quality').innerText;
   var qualities = ['Swill', 'Plausible', 'Genius']
   if (currentQuality == 0) {
@@ -63,12 +63,17 @@ function updateQuality() {
   else if (currentQuality == 1){
     document.querySelector('.quality').innerText = qualities[1];
   }
-  else {
+  else if (currentQuality == 2) {
     document.querySelector('.quality').innerText = qualities[2];
   }
+
+}
+function updateQualityValue(e) {
+  ideaTargeter(e);
+
 }
 
-function generateCard(cardBodyVal, cardTitleVal, qualityVal, ideaID) { 
+function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) { 
   var card = `<section class="card-section" data-id=${ideaID}>
         <article class="card-body">
           <h2 class="card-title">${cardTitleVal}</h2>
@@ -90,6 +95,7 @@ function generateCard(cardBodyVal, cardTitleVal, qualityVal, ideaID) {
 
 function buttonChecker(e) {
   e.preventDefault();
+  ideaTargeter(e);
   if (e.target.id === 'delete-card') {
     e.target.parentElement.parentElement.remove();
   } 
@@ -99,15 +105,17 @@ function buttonChecker(e) {
 
   if (e.target.id === 'up-vote') {
     var qualityEl = document.getElementsByClassName('.quality');
-
-
-
+    targetIdea[0].quality++;
+    updateQualityValue(e);
+    console.log(targetIdea[0])
     // updateQuality();
   }
   if (e.target.id === 'down-vote') {
-    // Target Down Vote button
-    console.log(e.target.parentElement.parentElement.parentElement.dataset.id);
-    // updateQuality();
+    targetIdea[0].quality--;
+    updateQualityValue(e);
+    console.log(targetIdea[0].quality);
+
+
   }
 }
 
@@ -130,12 +138,11 @@ function submitCardChange(e) {
   }
 }
 
-function updateStorage(e) {
+function ideaTargeter(e) {
   ideas = JSON.parse(localStorage.getItem('ideas'))
-  var targetIdea = ideas.filter(function(item) {
+  targetIdea = ideas.filter(function(item) {
     return item.id === e.path[2].dataset.id;
   })
-  console.log(targetIdea);
 }
 
 
