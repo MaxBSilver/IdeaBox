@@ -6,6 +6,7 @@
   var ideas, newIdea; 
   var targetIdea;
   var currentIdeaQuality;
+  var qualityVal;
 
 
 
@@ -25,8 +26,9 @@ function loadCards() {
       return false;
     } else {
       for (var i = 0; i < ideas.length; i++) {
-      generateCard(ideas[i].title, ideas[i].body, ideas[i].quality, ideas[i].id);
-      updateQuality();
+      updateQualityLoad(ideas[i].quality);
+      generateCard(ideas[i].title, ideas[i].body, qualityVal, ideas[i].id);
+      
     }
   }
 }
@@ -57,20 +59,30 @@ function createIdea(cardBodyVal, cardTitleVal) {
 }
 
 
+
+function updateQualityLoad(target) {
+  var qualities = ['Swill', 'Plausible', 'Genius'];
+  if (target == 0) {
+  qualityVal = qualities[0];
+  } 
+  else if (target == 1){
+  qualityVal = qualities[1];
+  }
+  else if (target == 2) {
+  qualityVal = qualities[2];
+  }
+}
+
 function updateQuality(e) {
-  // var currentQuality = currentIdeaQuality;
-  // console.log(e, 'this should be e')
-  // console.log(currentQuality, 'current quality')
-  console.log(e);
   var qualities = ['Swill', 'Plausible', 'Genius'];
   if (currentIdeaQuality == 0) {
-  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText = qualities[0];
+  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText= qualities[0];
   } 
   else if (currentIdeaQuality == 1){
   e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText= qualities[1];
   }
   else if (currentIdeaQuality == 2) {
-  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText= qualities[2];
+  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText = qualities[2];
   }
 }
 
@@ -93,10 +105,13 @@ function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) {
   storageEl.insertAdjacentHTML('afterbegin', card);
   clearInputs();
 }
-function upvote() {
-     currentIdeaQuality = targetIdea.quality;
-    currentIdeaQuality++;
+function upvote(e) {
+    console.log(targetIdea);
+    targetIdea.quality+= 1;
+    currentIdeaQuality = targetIdea.quality;
     updateQuality(e);
+    updateStorage();
+
 }
 function buttonChecker(e) {
   e.preventDefault();
@@ -107,10 +122,8 @@ function buttonChecker(e) {
   if (e.path[1].className === "card-body" && e.target.classList[0] !== 'creator-input') {
     editCard(e);
   }
-
   if (e.target.id === 'up-vote') {
-    upvote();
-
+    upvote(e);
   }
   if (e.target.id === 'down-vote') {
     targetIdea[0].quality--;
