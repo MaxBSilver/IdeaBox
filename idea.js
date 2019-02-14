@@ -3,7 +3,7 @@ class Idea {
     this.title = title;
     this.body = body;
     this.id =  Math.random().toString(36).substr(2, 9);
-    this.quality = 'Swill';
+    this.quality = 0;
     this.saveToStorage();
   }
   saveToStorage() {
