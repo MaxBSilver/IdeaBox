@@ -55,6 +55,7 @@ function createIdea(cardBodyVal, cardTitleVal, qualityVal) {
 }
 
 function updateQuality() {
+  
   var currentQuality = document.querySelector('.quality').innerText;
   var qualities = ['Swill', 'Plausible', 'Genius']
   if (currentQuality == 0) {
@@ -99,8 +100,10 @@ function buttonChecker(e) {
   }
 
   if (e.target.id === 'up-vote') {
-    // Target Upvote Button
-    console.log(e.target.parentElement.parentElement.parentElement.dataset.id);
+    var qualityEl = document.getElementsByClassName('.quality');
+
+
+
     // updateQuality();
   }
   if (e.target.id === 'down-vote') {
