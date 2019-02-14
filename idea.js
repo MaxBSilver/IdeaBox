@@ -21,6 +21,7 @@ class Idea {
 
   }
   updateQuality() {
+    console.log('hello max');
 
   }
 }
