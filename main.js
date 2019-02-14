@@ -86,6 +86,21 @@ function updateQuality(e) {
   }
 }
 
+function updateQualityDownvote(e) {
+  var qualities = ['Swill', 'Plausible', 'Genius'];
+  if (currentIdeaQuality == 0) {
+  e.target.nextElementSibling.firstElementChild.innerText= qualities[0];
+  } 
+  else if (currentIdeaQuality == 1){
+  e.target.nextElementSibling.firstElementChild.innerText= qualities[1];
+  }
+  else if (currentIdeaQuality == 2) {
+  e.target.nextElementSibling.firstElementChild.innerText = qualities[2];
+  }
+}
+
+
+
 
 function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) { 
   var card = `<section class="card-section" data-id=${ideaID}>
@@ -106,12 +121,17 @@ function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) {
   clearInputs();
 }
 function upvote(e) {
-    console.log(targetIdea);
     targetIdea.quality+= 1;
     currentIdeaQuality = targetIdea.quality;
     updateQuality(e);
     updateStorage();
 
+}
+function downvote(e) {
+    targetIdea.quality-= 1;
+    currentIdeaQuality = targetIdea.quality;
+    updateQualityDownvote(e);
+    updateStorage();
 }
 function buttonChecker(e) {
   e.preventDefault();
@@ -126,9 +146,7 @@ function buttonChecker(e) {
     upvote(e);
   }
   if (e.target.id === 'down-vote') {
-    targetIdea[0].quality--;
-    updateQualityValue(e);
-    console.log(targetIdea[0].quality);
+    downvote(e);
   }
 }
 
