@@ -36,11 +36,10 @@ function saveButton(event) {
 function checkInputs() {
   var cardTitleVal = cardTitleEl.value;
   var cardBodyVal = cardBodyEl.value; 
-  var qualityVal = 0;
   if (!cardTitleVal || !cardBodyVal) {
     return;
   } else {
-    createIdea(cardBodyVal, cardTitleVal, qualityVal);
+    createIdea(cardBodyVal, cardTitleVal);
   }
 }
 
@@ -49,16 +48,8 @@ function createIdea(cardBodyVal, cardTitleVal, qualityVal) {
   newIdea = new Idea(cardTitleVal, cardBodyVal, qualityVal, ideas);
   ideas = JSON.parse(ideas);
   ideas.push(newIdea); 
-  generateCard(cardBodyVal, cardTitleVal, newIdea.id);
+  generateCard(cardBodyVal, cardTitleVal, newIdea.quality, newIdea.id);
   console.log(newIdea.id);
-  newIdea.saveToStorage();
-}
-
-function generateCard(cardBodyVal, cardTitleVal, ideaID) { 
-  var card = `<section class="card-section" data-id=${ideaID}>
-        <article class="card-body">
-  generateCard(cardBodyVal, cardTitleVal, qualityVal, newIdea.id);
-  updateQuality();
   newIdea.saveToStorage();
 }
 
@@ -78,8 +69,8 @@ function updateQuality() {
 }
 
 function generateCard(cardBodyVal, cardTitleVal, qualityVal, ideaID) { 
-  var card = `<section class="card-section">
-        <article class="card-body" data-id=${ideaID}>
+  var card = `<section class="card-section" data-id=${ideaID}>
+        <article class="card-body">
           <h2 class="card-title">${cardTitleVal}</h2>
           <input class="creator-input title-input hidden" id="idea-input" type="text" name="title" placeholder="${cardTitleVal}">
           <p class="card-text">${cardBodyVal}</p>
@@ -93,6 +84,7 @@ function generateCard(cardBodyVal, cardTitleVal, qualityVal, ideaID) {
         </article>
       </section>`
   storageEl.insertAdjacentHTML('afterbegin', card);
+  updateQuality();
   clearInputs();
 }
 
