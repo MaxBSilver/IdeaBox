@@ -8,16 +8,12 @@
   var currentIdeaQuality;
   var qualityVal;
 
-
-
-
 /* Event Listeners */
 
 saveBtnEl.addEventListener('click', saveButton);
 window.addEventListener('load', loadCards);
 storageEl.addEventListener('click', buttonChecker);
 storageEl.addEventListener('keyup', submitCardChange)
-
 
 /* Functions */
 function loadCards() {
@@ -28,7 +24,6 @@ function loadCards() {
       for (var i = 0; i < ideas.length; i++) {
       updateQualityLoad(ideas[i].quality);
       generateCard(ideas[i].title, ideas[i].body, qualityVal, ideas[i].id);
-      
     }
   }
 }
@@ -54,11 +49,8 @@ function createIdea(cardBodyVal, cardTitleVal) {
   ideas = JSON.parse(ideas);
   ideas.push(newIdea); 
   generateCard(cardTitleVal, cardBodyVal, newIdea.quality, newIdea.id);
-  console.log(newIdea.id);
   newIdea.saveToStorage();
 }
-
-
 
 function updateQualityLoad(target) {
   var qualities = ['Swill', 'Plausible', 'Genius'];
@@ -73,35 +65,19 @@ function updateQualityLoad(target) {
   }
 }
 
-function updateQuality(e) {
+function updateQuality(e, target) {
   var qualities = ['Swill', 'Plausible', 'Genius'];
+  var targetSibling1 = e.target.nextElementSibling.nextElementSibling.firstElementChild
   if (currentIdeaQuality == 0) {
-  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText= qualities[0];
+  target.innerText= qualities[0];
   } 
-  else if (currentIdeaQuality == 1){
-  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText= qualities[1];
+  else if (currentIdeaQuality == 1) {
+  target.innerText= qualities[1];
   }
   else if (currentIdeaQuality == 2) {
-  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText = qualities[2];
+  target.innerText= qualities[2];
   }
 }
-
-function updateQualityDownvote(e) {
-  var qualities = ['Swill', 'Plausible', 'Genius'];
-  if (currentIdeaQuality == 0) {
-  e.target.nextElementSibling.firstElementChild.innerText= qualities[0];
-  } 
-  else if (currentIdeaQuality == 1){
-  e.target.nextElementSibling.firstElementChild.innerText= qualities[1];
-  }
-  else if (currentIdeaQuality == 2) {
-  e.target.nextElementSibling.firstElementChild.innerText = qualities[2];
-  }
-}
-
-
-
-
 function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) { 
   var card = `<section class="card-section" data-id=${ideaID}>
         <article class="card-body">
@@ -123,14 +99,24 @@ function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) {
 function upvote(e) {
     targetIdea.quality+= 1;
     currentIdeaQuality = targetIdea.quality;
-    updateQuality(e);
+    if (currentIdeaQuality > 2) {
+      targetIdea.quality = 2;
+    }
+    console.log(currentIdeaQuality);
+    var targetSibling1 = e.target.nextElementSibling.nextElementSibling.firstElementChild
+    updateQuality(e, targetSibling1);
     updateStorage();
 
 }
+
 function downvote(e) {
     targetIdea.quality-= 1;
     currentIdeaQuality = targetIdea.quality;
-    updateQualityDownvote(e);
+    if (currentIdeaQuality < 0) {
+    targetIdea.quality = 0;
+    }
+    var targetSibling2 = e.target.nextElementSibling.firstElementChild
+    updateQuality(e, targetSibling2);
     updateStorage();
 }
 function buttonChecker(e) {
