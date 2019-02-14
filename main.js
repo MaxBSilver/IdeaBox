@@ -52,7 +52,6 @@ function createIdea(cardBodyVal, cardTitleVal) {
   ideas = JSON.parse(ideas);
   ideas.push(newIdea); 
   generateCard(cardTitleVal, cardBodyVal, newIdea.quality, newIdea.id);
-  console.log(newIdea.quality, 'idea-quality');
   console.log(newIdea.id);
   newIdea.saveToStorage();
 }
@@ -114,7 +113,9 @@ function buttonChecker(e) {
 
   }
   if (e.target.id === 'down-vote') {
-
+    targetIdea[0].quality--;
+    updateQualityValue(e);
+    console.log(targetIdea[0].quality);
   }
 }
 
@@ -133,7 +134,8 @@ function submitCardChange(e) {
     e.target.previousElementSibling.innerText = e.srcElement.value;
     e.target.previousElementSibling.classList.remove('hidden');
     e.target.classList.add('hidden');
-    updateStorage(e);
+    updateIdeaContent(e);
+    updateStorage();
   }
 }
 
@@ -144,4 +146,19 @@ function ideaTargeter(e) {
   })[0]
 }
 
+function updateStorage() {
+  var indexOfIdea = ideas.findIndex(i => i.id === targetIdea.id);
+  ideas.splice(indexOfIdea, 1, targetIdea);
+  localStorage.clear();
+  localStorage.setItem('ideas', JSON.stringify(ideas));
+}
+
+function updateIdeaContent(e) {
+  if (e.target.classList[1] == 'title-input') {
+    targetIdea.title = e.srcElement.value
+  }
+  if (e.target.classList[1] == 'body-input') {
+    targetIdea.body = e.srcElement.value
+  }
+}
 
