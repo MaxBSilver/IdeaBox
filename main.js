@@ -24,7 +24,7 @@ function loadCards() {
       return false;
     } else {
       for (var i = 0; i < ideas.length; i++) {
-      generateCard(ideas[i].title, ideas[i].body)
+      generateCard(ideas[i].title, ideas[i].body, ideas[i].id)
     }
   }
 }
@@ -47,6 +47,7 @@ function createIdea(cardBodyVal, cardTitleVal) {
   ideas = JSON.parse(ideas);
   ideas.push(newIdea); 
   generateCard(cardBodyVal, cardTitleVal, newIdea.id);
+  console.log(newIdea.id);
   newIdea.saveToStorage();
 }
 
