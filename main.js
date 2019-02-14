@@ -3,7 +3,6 @@
   var cardTitleEl = document.querySelector('.title-input');
   var cardBodyEl = document.querySelector('.body-input');
   var storageEl = document.querySelector('.storage');
-  var qualityEl = document.querySelector('.quality');
   var ideas, newIdea; 
 
 
@@ -37,23 +36,41 @@ function saveButton(event) {
 function checkInputs() {
   var cardTitleVal = cardTitleEl.value;
   var cardBodyVal = cardBodyEl.value; 
+  var qualityVal = 0;
   if (!cardTitleVal || !cardBodyVal) {
     return;
   } else {
-    createIdea(cardBodyVal, cardTitleVal);
+    createIdea(cardBodyVal, cardTitleVal, qualityVal);
   }
 }
 
-function createIdea(cardBodyVal, cardTitleVal) {
+function createIdea(cardBodyVal, cardTitleVal, qualityVal) {
   ideas = localStorage.getItem('ideas') || '[]';
-  newIdea = new Idea(cardTitleVal, cardBodyVal, ideas);
+  newIdea = new Idea(cardTitleVal, cardBodyVal, qualityVal, ideas);
   ideas = JSON.parse(ideas);
   ideas.push(newIdea); 
-  generateCard(cardBodyVal, cardTitleVal, newIdea.id);
+  generateCard(cardBodyVal, cardTitleVal, qualityVal, newIdea.id);
+  updateQuality();
   newIdea.saveToStorage();
 }
 
-function generateCard(cardBodyVal, cardTitleVal, ideaID) { 
+function updateQuality() {
+  var currentQuality = document.querySelector('.quality').innerText;
+  var qualities = ['Swill', 'Plausible', 'Genius']
+  if (currentQuality == 0) {
+    document.querySelector('.quality').innerText = qualities[0];
+  } 
+  else if (currentQuality == 1){
+    document.querySelector('.quality').innerText = qualities[1];
+  }
+  else {
+    document.querySelector('.quality').innerText = qualities[2];
+
+  }
+
+}
+
+function generateCard(cardBodyVal, cardTitleVal, qualityVal, ideaID) { 
   var card = `<section class="card-section">
         <article class="card-body" data-id=${ideaID}>
           <h2 class="card-title">${cardTitleVal}</h2>
@@ -64,7 +81,7 @@ function generateCard(cardBodyVal, cardTitleVal, ideaID) {
         <article class="card-bottom">
           <img class="card-btn" id="up-vote" src="image-assets/upvote.svg">
           <img class="card-btn" id="down-vote" src="image-assets/downvote.svg">
-          <p class="card-bottom-text">Quality: <span class="quality">Swill</span></p>
+          <p class="card-bottom-text">Quality: <span class="quality">${qualityVal}</span></p>
           <img class="card-btn" id="delete-card" src="image-assets/delete.svg">
         </article>
       </section>`
@@ -81,9 +98,8 @@ function buttonChecker(e) {
     editCard(e);
   }
 
-
   if (e.target.id === 'up-vote') {
-    // Target Up Vote button
+    // Target Upvote Button
     console.log(e.target.parentElement.parentElement.parentElement.dataset.id);
     // updateQuality();
   }
