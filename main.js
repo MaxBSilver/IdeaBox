@@ -5,6 +5,7 @@
   var storageEl = document.querySelector('.storage');
   var ideas, newIdea; 
   var targetIdea;
+  var currentIdeaQuality;
 
 
 
@@ -24,7 +25,8 @@ function loadCards() {
       return false;
     } else {
       for (var i = 0; i < ideas.length; i++) {
-      generateCard(ideas[i].title, ideas[i].body, ideas[i].quality, ideas[i].id)
+      generateCard(ideas[i].title, ideas[i].body, ideas[i].quality, ideas[i].id);
+      updateQuality();
     }
   }
 }
@@ -54,24 +56,24 @@ function createIdea(cardBodyVal, cardTitleVal) {
   newIdea.saveToStorage();
 }
 
-function updateQuality() {
-  var currentQuality = document.querySelector('.quality').innerText;
-  var qualities = ['Swill', 'Plausible', 'Genius']
-  if (currentQuality == 0) {
-    document.querySelector('.quality').innerText = qualities[0];
+
+function updateQuality(e) {
+  // var currentQuality = currentIdeaQuality;
+  // console.log(e, 'this should be e')
+  // console.log(currentQuality, 'current quality')
+  console.log(e);
+  var qualities = ['Swill', 'Plausible', 'Genius'];
+  if (currentIdeaQuality == 0) {
+  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText = qualities[0];
   } 
-  else if (currentQuality == 1){
-    document.querySelector('.quality').innerText = qualities[1];
+  else if (currentIdeaQuality == 1){
+  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText= qualities[1];
   }
-  else if (currentQuality == 2) {
-    document.querySelector('.quality').innerText = qualities[2];
+  else if (currentIdeaQuality == 2) {
+  e.target.nextElementSibling.nextElementSibling.firstElementChild.innerText= qualities[2];
   }
-
 }
-function updateQualityValue(e) {
-  ideaTargeter(e);
 
-}
 
 function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) { 
   var card = `<section class="card-section" data-id=${ideaID}>
@@ -84,15 +86,18 @@ function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) {
         <article class="card-bottom">
           <img class="card-btn" id="up-vote" src="image-assets/upvote.svg">
           <img class="card-btn" id="down-vote" src="image-assets/downvote.svg">
-          <p class="card-bottom-text">Quality: <span class="quality">${qualityVal}</span></p>
+          <p class="card-bottom-text">Quality: <span class="quality">${qualityVal || 'Swill'}</span></p>
           <img class="card-btn" id="delete-card" src="image-assets/delete.svg">
         </article>
       </section>`
   storageEl.insertAdjacentHTML('afterbegin', card);
-  updateQuality();
   clearInputs();
 }
-
+function upvote() {
+     currentIdeaQuality = targetIdea.quality;
+    currentIdeaQuality++;
+    updateQuality(e);
+}
 function buttonChecker(e) {
   e.preventDefault();
   ideaTargeter(e);
@@ -104,11 +109,8 @@ function buttonChecker(e) {
   }
 
   if (e.target.id === 'up-vote') {
-    var qualityEl = document.getElementsByClassName('.quality');
-    targetIdea[0].quality++;
-    updateQualityValue(e);
-    console.log(targetIdea[0])
-    // updateQuality();
+    upvote();
+
   }
   if (e.target.id === 'down-vote') {
     targetIdea[0].quality--;
