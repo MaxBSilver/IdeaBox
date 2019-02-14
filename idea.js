@@ -18,7 +18,7 @@ class Idea {
     localStorage.removeItem(stringyIdea);
   }
   updateContent() {
-
+    
   }
   updateQuality() {
     console.log('hello max');

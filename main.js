@@ -105,10 +105,13 @@ function buttonChecker(e) {
 
   if (e.target.id === 'up-vote') {
     var qualityEl = document.getElementsByClassName('.quality');
-
+    targetIdea[0].quality++;
+    updateQualityValue(e);
+    console.log(targetIdea[0])
     // updateQuality();
   }
   if (e.target.id === 'down-vote') {
+    targetIdea[0].quality--;
     updateQualityValue(e);
     console.log(targetIdea[0].quality);
 
