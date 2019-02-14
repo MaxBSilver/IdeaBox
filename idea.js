@@ -4,8 +4,7 @@ class Idea {
     this.body = body;
     ideas = JSON.parse(ideas);
     this.id =  Math.random().toString(36).substr(2, 9);
-    // this.id = ideas.length + 100;
-    this.quality = 'Swill';
+    this.quality = 0;
     this.saveToStorage();
   }
   saveToStorage() {
