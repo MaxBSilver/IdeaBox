@@ -23,7 +23,7 @@ function loadCards() {
       return false;
     } else {
       for (var i = 0; i < ideas.length; i++) {
-      generateCard(ideas[i].title, ideas[i].body)
+      generateCard(ideas[i].title, ideas[i].body, ideas[i].id)
     }
   }
 }
@@ -49,6 +49,14 @@ function createIdea(cardBodyVal, cardTitleVal, qualityVal) {
   newIdea = new Idea(cardTitleVal, cardBodyVal, qualityVal, ideas);
   ideas = JSON.parse(ideas);
   ideas.push(newIdea); 
+  generateCard(cardBodyVal, cardTitleVal, newIdea.id);
+  console.log(newIdea.id);
+  newIdea.saveToStorage();
+}
+
+function generateCard(cardBodyVal, cardTitleVal, ideaID) { 
+  var card = `<section class="card-section" data-id=${ideaID}>
+        <article class="card-body">
   generateCard(cardBodyVal, cardTitleVal, qualityVal, newIdea.id);
   updateQuality();
   newIdea.saveToStorage();
@@ -66,9 +74,7 @@ function updateQuality() {
   }
   else {
     document.querySelector('.quality').innerText = qualities[2];
-
   }
-
 }
 
 function generateCard(cardBodyVal, cardTitleVal, qualityVal, ideaID) { 
@@ -128,7 +134,16 @@ function submitCardChange(e) {
     e.target.previousElementSibling.innerText = e.srcElement.value;
     e.target.previousElementSibling.classList.remove('hidden');
     e.target.classList.add('hidden');
+    updateStorage(e);
   }
+}
+
+function updateStorage(e) {
+  ideas = JSON.parse(localStorage.getItem('ideas'))
+  var targetIdea = ideas.filter(function(item) {
+    return item.id === e.path[2].dataset.id;
+  })
+  console.log(targetIdea);
 }
 
 

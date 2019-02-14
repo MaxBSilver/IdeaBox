@@ -2,7 +2,6 @@ class Idea {
   constructor(title, body, ideas) {
     this.title = title;
     this.body = body;
-    ideas = JSON.parse(ideas);
     this.id =  Math.random().toString(36).substr(2, 9);
     this.quality = 0;
     this.saveToStorage();
