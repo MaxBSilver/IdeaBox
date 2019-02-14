@@ -18,6 +18,7 @@ class Idea {
     localStorage.removeItem(stringyIdea);
   }
   updateContent() {
+    console.log('you are in')
     
   }
   updateQuality() {
