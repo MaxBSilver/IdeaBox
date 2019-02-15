@@ -65,19 +65,7 @@ function updateQualityLoad(target) {
   }
 }
 
-function updateQuality(e, target) {
-  var qualities = ['Swill', 'Plausible', 'Genius'];
-  var targetSibling1 = e.target.nextElementSibling.nextElementSibling.firstElementChild
-  if (currentIdeaQuality == 0) {
-  target.innerText= qualities[0];
-  } 
-  else if (currentIdeaQuality == 1) {
-  target.innerText= qualities[1];
-  }
-  else if (currentIdeaQuality == 2) {
-  target.innerText= qualities[2];
-  }
-}
+
 function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) { 
   var card = `<section class="card-section" data-id=${ideaID}>
         <article class="card-body">
@@ -95,6 +83,20 @@ function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) {
       </section>`
   storageEl.insertAdjacentHTML('afterbegin', card);
   clearInputs();
+}
+/* QUALITY CHANGING FUNCTIONS */
+function updateQuality(e, target) {
+  var qualities = ['Swill', 'Plausible', 'Genius'];
+  var targetSibling1 = e.target.nextElementSibling.nextElementSibling.firstElementChild
+  if (currentIdeaQuality == 0) {
+  target.innerText= qualities[0];
+  } 
+  else if (currentIdeaQuality == 1) {
+  target.innerText= qualities[1];
+  }
+  else if (currentIdeaQuality == 2) {
+  target.innerText= qualities[2];
+  }
 }
 function upvote(e) {
     targetIdea.quality+= 1;
@@ -119,6 +121,10 @@ function downvote(e) {
     updateQuality(e, targetSibling2);
     updateStorage();
 }
+
+
+/* BUTTON FUNCTIONS */ 
+
 function buttonChecker(e) {
   e.preventDefault();
   ideaTargeter(e);
