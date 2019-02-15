@@ -2,7 +2,6 @@
 *,
 *:before,
 *:after {
-  /*border: 1px red solid;*/
   box-sizing: border-box;
 }
 
@@ -34,10 +33,10 @@ header {
 
 h1 {
   color: #B2A1B1;
+  font-size: 52px;
+  font-weight: 800;
   margin: 30px 1em;
   width: 30%;
-  font-weight: 800;
-  font-size: 52px;
 }
 
 .search-bar {
@@ -49,12 +48,12 @@ h1 {
 }
 
 .search-bar input {
-  border: solid 2px #d2cccd;
-  width: 90%;
   border-radius: 5px 0 0 5px;
+  border: solid 2px #d2cccd;
   font-size: 32px;
   height: 45px;
   padding: 10px 15px;
+  width: 90%;
 }
 
 .search-btn {
@@ -86,14 +85,17 @@ i {
   justify-content: center;
 }
 
-.input-wrapper {
-  height: 278px;
+.user-flow {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 60%;
   max-width: 700px;
-  margin: 20px 0;
+  width: 60%;
+}
+
+.input-wrapper {
+  flex-direction: column;
+  height: 278px;
+  justify-content: space-around;
+  margin: 20px 0 0;
 }
 
 .creator-label {
@@ -116,21 +118,34 @@ i {
   margin-bottom: 15px;
   width: 100%;
 }
+
 .creator-submit {
   height: 40px;
 }
 
-button.save-btn {
-  background-color: #5E5C6B;
+.filter-btn,
+.btm-btn {
   color: #FFF;
+  font-size: 20px;
   font-weight: 800;
-  font-size:20px;
+}
+
+.btm-btn {
+  background-color: #5E5C6B;
   height: 50px;
   margin-top: 10px;
 }
 
 label {
   font-size: 24px;
+}
+
+.filter-btn {
+  background-color: #B2A1B1;
+}
+
+.show-more-less-btn {
+  margin-top: 0;
 }
 
 /* bottom */
@@ -142,10 +157,10 @@ label {
   grid-template-rows: 4fr 1fr;
   height: 200px;
   margin: 50px auto 20px auto;
+  max-width: 700px;
   min-height: 200px;
   padding: 0px 16px;
   width: 60%;
-  max-width: 700px;
 }
 
 .card-title {
@@ -185,3 +200,5 @@ label {
 .hidden {
   display: none;
 }
+
+
