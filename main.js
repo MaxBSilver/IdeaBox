@@ -45,7 +45,7 @@ function checkInputs() {
 
 function createIdea(cardBodyVal, cardTitleVal) {
   ideas = localStorage.getItem('ideas') || '[]';
-  newIdea = new Idea(cardTitleVal, cardBodyVal, ideas);
+  newIdea = new Idea(Math.random().toString(36).substr(2, 9), cardTitleVal, cardBodyVal, ideas);
   ideas = JSON.parse(ideas);
   ideas.push(newIdea); 
   generateCard(cardTitleVal, cardBodyVal, newIdea.quality, newIdea.id);
@@ -124,7 +124,15 @@ function buttonChecker(e) {
   ideaTargeter(e);
   if (e.target.id === 'delete-card') {
     e.target.parentElement.parentElement.remove();
-  } 
+    keyCard = e.path[2].dataset.id;
+    ideas.forEach(function(newIdea) {
+    if (newIdea.id === keyCard) {
+      var i = ideas.findIndex(i => i.id === targetIdea.id);
+      var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
+      ideaToDelete.deleteFromStorage(i);
+    }
+  });
+}
   if (e.path[1].className === "card-body" && e.target.classList[0] !== 'creator-input') {
     editCard(e);
   }
@@ -178,4 +186,9 @@ function updateIdeaContent(e) {
     targetIdea.body = e.srcElement.value
   }
 }
+
+
+
+
+
 
