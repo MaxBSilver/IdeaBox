@@ -188,7 +188,11 @@ function deleteCard(e) {
 });
 }
 
-
+function searchCards(inputText) {
+  var inputText = inputText.toLowerCase();
+  // toLowerCase title and body
+  // If title or body is equal to input text ... do something
+}
 
 
 
