@@ -56,7 +56,7 @@ class Idea {
    localStorage.clear();
    localStorage.setItem('ideas', JSON.stringify(ideas));
  }
-}
+
   updateContent(e) {
     e.target.previousElementSibling.innerText = e.srcElement.value;
     e.target.previousElementSibling.classList.remove('hidden');
@@ -68,5 +68,6 @@ class Idea {
       targetIdea.body = e.srcElement.value
     }
   }  
+}
 
 

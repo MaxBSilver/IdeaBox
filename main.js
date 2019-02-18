@@ -120,9 +120,6 @@ function submitCardChange(e) {
   var i = ideas.findIndex(i => i.id === targetIdea.id);
   var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
   if (e.code === "Enter") {
-    // e.target.previousElementSibling.innerText = e.srcElement.value;
-    // e.target.previousElementSibling.classList.remove('hidden');
-    // e.target.classList.add('hidden');
     ideaToDelete.updateContent(e);
     ideaToDelete.updateStorage(i);
   }
