@@ -5,7 +5,8 @@
   var storageEl = document.querySelector('.storage');
   var searchInput = document.querySelector('#search-input');
   var searchBtnEl = document.querySelector('.search-btn');
-  var ideas  = JSON.parse(localStorage.getItem('ideas'));
+  var ideas;
+  var filterBtns = document.querySelector('.filter-btns')
   var newIdea; 
   var targetIdea;
   var currentIdeaQuality;
@@ -14,17 +15,18 @@
 /* Event Listeners */
 searchBtnEl.addEventListener('click', searchIdeas);
 saveBtnEl.addEventListener('click', saveButton);
-window.addEventListener('load', loadCards(ideas));
+window.addEventListener('load', loadCards(JSON.parse(localStorage.getItem('ideas'))) || []);
 storageEl.addEventListener('click', buttonChecker);
 storageEl.addEventListener('keyup', submitCardChange);
 searchInput.addEventListener('keyup', searchIdeas);
+filterBtns.addEventListener('click', filterIdeas);
 
 /* Functions */
 function loadCards(loadArray) {
+  storageEl.innerHTML = '';
   if (!loadArray) {
       return false;
     } else {
-      storageEl.innerHTML = '';
       for (var i = 0; i < loadArray.length; i++) {
       updateQualityLoad(loadArray[i].quality);
       generateCard(loadArray[i].title, loadArray[i].body, qualityVal, loadArray[i].id);
@@ -94,6 +96,7 @@ function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) {
 function buttonChecker(e) {
   e.preventDefault();
   ideaTargeter(e);
+  console.log(targetIdea);
   var i = ideas.findIndex(i => i.id === targetIdea.id);
   var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
   if (e.target.id === 'delete-card') {
@@ -103,10 +106,10 @@ function buttonChecker(e) {
     editCard(e);
   }
   if (e.target.id === 'up-vote') {
-    ideaToDelete.upvote(e);
+    ideaToDelete.upvote(i, e);
   }
   if (e.target.id === 'down-vote') {
-    ideaToDelete.downvote(e);
+    ideaToDelete.downvote(i, e);
   }
 }
 
@@ -136,6 +139,15 @@ function ideaTargeter(e) {
   })[0]
 }
 
+function filterIdeas(e) {
+  var ideas = localStorage.ideas || '[]';
+  ideas = JSON.parse(ideas);
+  var filteredQuality = e.target.id;
+  var filteredResults = ideas.filter(function(item){
+    return item.quality == filteredQuality
+  })
+  loadCards(filteredResults)
+}
 
 function searchIdeas() {
   var searchResults = []
@@ -147,6 +159,5 @@ function searchIdeas() {
       searchResults.push(idea)
     }
   });
-  console.log(searchResults);
   loadCards(searchResults);
 }
