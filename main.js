@@ -1,25 +1,25 @@
 /* Global Variables */
-  var saveBtnEl = document.querySelector('.save-btn');
-  var cardTitleEl = document.querySelector('.title-input');
-  var cardBodyEl = document.querySelector('.body-input');
   var storageEl = document.querySelector('.storage');
-  var searchInput = document.querySelector('#search-input');
+  var saveBtnEl = document.querySelector('.save-btn');
+  var cardBodyEl = document.querySelector('.body-input');
   var searchBtnEl = document.querySelector('.search-btn');
+  var filterBtns = document.querySelector('.filter-btns');
+  var cardTitleEl = document.querySelector('.title-input');
+  var searchInput = document.querySelector('#search-input');
   var ideas;
-  var filterBtns = document.querySelector('.filter-btns')
   var newIdea; 
   var targetIdea;
   var currentIdeaQuality;
   var qualityVal;
 
 /* Event Listeners */
-searchBtnEl.addEventListener('click', searchIdeas);
 saveBtnEl.addEventListener('click', saveButton);
-window.addEventListener('load', loadCards(JSON.parse(localStorage.getItem('ideas'))) || []);
-storageEl.addEventListener('click', buttonChecker);
-storageEl.addEventListener('keyup', submitCardChange);
-searchInput.addEventListener('keyup', searchIdeas);
 filterBtns.addEventListener('click', filterIdeas);
+searchBtnEl.addEventListener('click', searchIdeas);
+storageEl.addEventListener('click', buttonChecker);
+searchInput.addEventListener('keyup', searchIdeas);
+storageEl.addEventListener('keyup', submitCardChange);
+window.addEventListener('load', loadCards(JSON.parse(localStorage.getItem('ideas'))) || []);
 
 /* Functions */
 function loadCards(loadArray) {
@@ -63,7 +63,7 @@ function updateQualityLoad(target) {
   if (target == 0) {
   qualityVal = qualities[0];
   } 
-  else if (target == 1){
+  else if (target == 1) {
   qualityVal = qualities[1];
   }
   else if (target == 2) {
@@ -144,19 +144,19 @@ function filterIdeas(e) {
   ideas = JSON.parse(ideas);
   var filteredQuality = e.target.id;
   var filteredResults = ideas.filter(function(item){
-    return item.quality == filteredQuality
+    return item.quality == filteredQuality;
   })
-  loadCards(filteredResults)
+  loadCards(filteredResults);
 }
 
 function searchIdeas() {
-  var searchResults = []
-  var searchQuery = searchInput.value.toLowerCase()
-  var ideas = localStorage.ideas || '[]'
-  ideas = JSON.parse(ideas)
-  ideas.forEach(function(idea) {
+  var searchResults = [];
+  var searchQuery = searchInput.value.toLowerCase();
+  var ideas = localStorage.ideas || '[]';
+  ideas = JSON.parse(ideas);
+  ideas.forEach(idea => {
     if(idea.title.toLowerCase().includes(searchQuery) || idea.body.toLowerCase().includes(searchQuery)) {
-      searchResults.push(idea)
+      searchResults.push(idea);
     }
   });
   loadCards(searchResults);
