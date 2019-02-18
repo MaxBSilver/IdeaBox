@@ -19,7 +19,8 @@ class Idea {
   updateContent() {
     
   }
-  updateQuality() {
+  updateQuality(i) {
+
 
   }
 }
