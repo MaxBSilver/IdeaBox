@@ -5,7 +5,8 @@
   var storageEl = document.querySelector('.storage');
   var searchInput = document.querySelector('#search-input');
   var searchBtnEl = document.querySelector('.search-btn');
-  var ideas, newIdea; 
+  var ideas  = JSON.parse(localStorage.getItem('ideas'));
+  var newIdea; 
   var targetIdea;
   var currentIdeaQuality;
   var qualityVal;
@@ -13,19 +14,20 @@
 /* Event Listeners */
 searchBtnEl.addEventListener('click', searchIdeas);
 saveBtnEl.addEventListener('click', saveButton);
-window.addEventListener('load', loadCards);
+window.addEventListener('load', loadCards(ideas));
 storageEl.addEventListener('click', buttonChecker);
 storageEl.addEventListener('keyup', submitCardChange)
 
 /* Functions */
-function loadCards() {
-  ideas = JSON.parse(localStorage.getItem('ideas'));
+function loadCards(loadArray) {
+  // ideas = JSON.parse(localStorage.getItem('ideas'));
   if (!ideas) {
       return false;
     } else {
-      for (var i = 0; i < ideas.length; i++) {
-      updateQualityLoad(ideas[i].quality);
-      generateCard(ideas[i].title, ideas[i].body, qualityVal, ideas[i].id);
+      storageEl.innerHTML = '';
+      for (var i = 0; i < loadArray.length; i++) {
+      updateQualityLoad(loadArray[i].quality);
+      generateCard(loadArray[i].title, loadArray[i].body, qualityVal, loadArray[i].id);
     }
   }
 }
@@ -146,5 +148,5 @@ function searchIdeas() {
     }
   });
   console.log(searchResults);
-  loadCards();
+  loadCards(searchResults);
 }
