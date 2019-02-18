@@ -3,13 +3,15 @@
   var cardTitleEl = document.querySelector('.title-input');
   var cardBodyEl = document.querySelector('.body-input');
   var storageEl = document.querySelector('.storage');
+  var searchInput = document.querySelector('#search-input');
+  var searchBtnEl = document.querySelector('.search-btn');
   var ideas, newIdea; 
   var targetIdea;
   var currentIdeaQuality;
   var qualityVal;
 
 /* Event Listeners */
-
+searchBtnEl.addEventListener('click', searchIdeas);
 saveBtnEl.addEventListener('click', saveButton);
 window.addEventListener('load', loadCards);
 storageEl.addEventListener('click', buttonChecker);
@@ -188,11 +190,16 @@ function deleteCard(e) {
 });
 }
 
-function searchCards(inputText) {
-  var inputText = inputText.toLowerCase();
-  // toLowerCase title and body
-  // If title or body is equal to input text ... do something
+function searchIdeas() {
+  var searchResults = []
+  var searchQuery = searchInput.value.toLowerCase()
+  var ideas = localStorage.ideas || '[]'
+  ideas = JSON.parse(ideas)
+  ideas.forEach(function(idea) {
+    if(idea.title.toLowerCase().includes(searchQuery) || idea.body.toLowerCase().includes(searchQuery)) {
+      searchResults.push(idea)
+    }
+  });
+  console.log(searchResults);
+  loadCards();
 }
-
-
-
