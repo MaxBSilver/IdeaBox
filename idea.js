@@ -30,7 +30,8 @@ class Idea {
     target.innerText= qualities[2];
     }
   } 
-  upvote(e) {
+  
+  upvote(i, e) {
     targetIdea.quality+= 1;
     currentIdeaQuality = targetIdea.quality;
     if (currentIdeaQuality > 2) {
@@ -41,7 +42,7 @@ class Idea {
     this.updateStorage();
 
   } 
-  downvote(e) {
+  downvote(i, e) {
     targetIdea.quality-= 1;
     currentIdeaQuality = targetIdea.quality;
     if (currentIdeaQuality < 0) {
@@ -49,7 +50,7 @@ class Idea {
     }
     var targetSibling2 = e.target.nextElementSibling.firstElementChild
     this.updateQuality(e, targetSibling2);
-    this.updateStorage();
+    this.updateStorage(i);
 }
    updateStorage(i) {
    ideas.splice(i, 1, targetIdea);
