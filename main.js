@@ -16,12 +16,12 @@ searchBtnEl.addEventListener('click', searchIdeas);
 saveBtnEl.addEventListener('click', saveButton);
 window.addEventListener('load', loadCards(ideas));
 storageEl.addEventListener('click', buttonChecker);
-storageEl.addEventListener('keyup', submitCardChange)
+storageEl.addEventListener('keyup', submitCardChange);
+searchInput.addEventListener('keyup', searchIdeas);
 
 /* Functions */
 function loadCards(loadArray) {
-  // ideas = JSON.parse(localStorage.getItem('ideas'));
-  if (!ideas) {
+  if (!loadArray) {
       return false;
     } else {
       storageEl.innerHTML = '';
