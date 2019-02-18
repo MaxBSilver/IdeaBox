@@ -39,7 +39,7 @@ class Idea {
     }
     var targetSibling1 = e.target.nextElementSibling.nextElementSibling.firstElementChild
     this.updateQuality(e, targetSibling1);
-    this.updateStorage();
+    this.updateStorage(i);
 
   } 
   downvote(i, e) {
