@@ -155,12 +155,14 @@ function editCard(e) {
 }
 
 function submitCardChange(e) {
+  var i = ideas.findIndex(i => i.id === targetIdea.id);
+  var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
   if (e.code === "Enter") {
-    e.target.previousElementSibling.innerText = e.srcElement.value;
-    e.target.previousElementSibling.classList.remove('hidden');
-    e.target.classList.add('hidden');
-    updateIdeaContent(e);
-    updateStorage();
+    // e.target.previousElementSibling.innerText = e.srcElement.value;
+    // e.target.previousElementSibling.classList.remove('hidden');
+    // e.target.classList.add('hidden');
+    ideaToDelete.updateContent(e);
+    ideaToDelete.updateStorage(i);
   }
 }
 
@@ -171,30 +173,7 @@ function ideaTargeter(e) {
   })[0]
 }
 
-function updateStorage() {
-  var indexOfIdea = ideas.findIndex(i => i.id === targetIdea.id);
-  ideas.splice(indexOfIdea, 1, targetIdea);
-  localStorage.clear();
-  localStorage.setItem('ideas', JSON.stringify(ideas));
-}
 
-function updateIdeaContent(e) {
-  if (e.target.classList[1] == 'title-input') {
-    targetIdea.title = e.srcElement.value
-  }
-  if (e.target.classList[1] == 'body-input') {
-    targetIdea.body = e.srcElement.value
-  }
-}
-
-function deleteCard(e) {
-  
-  ideas.forEach(function(newIdea) {
-    // var i = ideas.findIndex(i => i.id === targetIdea.id);
-    // var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
-    // ideaToDelete.deleteFromStorage(i, e);
-});
-}
 
 
 
