@@ -21,7 +21,8 @@ class Idea {
     console.log('test')
     
   }
-  updateQuality() {
+  updateQuality(i) {
+
 
   }
 }
