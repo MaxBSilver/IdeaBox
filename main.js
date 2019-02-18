@@ -84,44 +84,6 @@ function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) {
   storageEl.insertAdjacentHTML('afterbegin', card);
   clearInputs();
 }
-/* QUALITY CHANGING FUNCTIONS */
-function updateQuality(e, target) {
-  var qualities = ['Swill', 'Plausible', 'Genius'];
-  var targetSibling1 = e.target.nextElementSibling.nextElementSibling.firstElementChild
-  if (currentIdeaQuality == 0) {
-  target.innerText= qualities[0];
-  } 
-  else if (currentIdeaQuality == 1) {
-  target.innerText= qualities[1];
-  }
-  else if (currentIdeaQuality == 2) {
-  target.innerText= qualities[2];
-  }
-}
-function upvote(e) {
-    targetIdea.quality+= 1;
-    currentIdeaQuality = targetIdea.quality;
-    if (currentIdeaQuality > 2) {
-      targetIdea.quality = 2;
-    }
-    console.log(currentIdeaQuality);
-    var targetSibling1 = e.target.nextElementSibling.nextElementSibling.firstElementChild
-    updateQuality(e, targetSibling1);
-    updateStorage();
-
-}
-
-function downvote(e) {
-    targetIdea.quality-= 1;
-    currentIdeaQuality = targetIdea.quality;
-    if (currentIdeaQuality < 0) {
-    targetIdea.quality = 0;
-    }
-    var targetSibling2 = e.target.nextElementSibling.firstElementChild
-    updateQuality(e, targetSibling2);
-    updateStorage();
-}
-
 
 /* BUTTON FUNCTIONS */ 
 
@@ -137,10 +99,10 @@ function buttonChecker(e) {
     editCard(e);
   }
   if (e.target.id === 'up-vote') {
-    upvote(e);
+    ideaToDelete.upvote(e);
   }
   if (e.target.id === 'down-vote') {
-    downvote(e);
+    ideaToDelete.downvote(e);
   }
 }
 
@@ -172,7 +134,6 @@ function ideaTargeter(e) {
     return item.id === e.path[2].dataset.id;
   })[0]
 }
-
 
 
 
