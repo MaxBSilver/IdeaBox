@@ -10,13 +10,15 @@ class Idea {
     var stringyIdeas = JSON.stringify(ideas);
     localStorage.setItem('ideas', stringyIdeas);
   }
-  deleteFromStorage(i) {
+  deleteFromStorage(i, e) {
+    e.target.parentElement.parentElement.remove();
     var ideasString = localStorage.ideas || [];
     var ideas = JSON.parse(ideasString);
     ideas.splice(i, 1);
     localStorage.ideas = JSON.stringify(ideas);
   }
   updateContent() {
+    console.log('test')
     
   }
   updateQuality() {

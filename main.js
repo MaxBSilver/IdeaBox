@@ -128,8 +128,10 @@ function downvote(e) {
 function buttonChecker(e) {
   e.preventDefault();
   ideaTargeter(e);
+  var i = ideas.findIndex(i => i.id === targetIdea.id);
+  var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
   if (e.target.id === 'delete-card') {
-    deleteCard(e);
+    ideaToDelete.deleteFromStorage(i, e);
   }
   if (e.path[1].className === "card-body" && e.target.classList[0] !== 'creator-input') {
     editCard(e);
@@ -186,11 +188,11 @@ function updateIdeaContent(e) {
 }
 
 function deleteCard(e) {
-  e.target.parentElement.parentElement.remove();
+  
   ideas.forEach(function(newIdea) {
-    var i = ideas.findIndex(i => i.id === targetIdea.id);
-    var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
-    ideaToDelete.deleteFromStorage(i);
+    // var i = ideas.findIndex(i => i.id === targetIdea.id);
+    // var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
+    // ideaToDelete.deleteFromStorage(i, e);
 });
 }
 
