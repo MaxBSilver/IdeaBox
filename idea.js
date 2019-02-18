@@ -28,7 +28,8 @@ class Idea {
       targetIdea.body = e.srcElement.value
     }
   }  
-  updateQuality() {
+
+  updateQuality(i) {
 
   }
 
