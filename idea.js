@@ -17,10 +17,7 @@ class Idea {
     ideas.splice(i, 1);
     localStorage.ideas = JSON.stringify(ideas);
   }
-  updateContent() {
-    console.log('test')
-    
-  }
+  
   updateQuality(e, target) {
     var qualities = ['Swill', 'Plausible', 'Genius'];
     if (currentIdeaQuality == 0) {
@@ -60,5 +57,16 @@ class Idea {
    localStorage.setItem('ideas', JSON.stringify(ideas));
  }
 }
+  updateContent(e) {
+    e.target.previousElementSibling.innerText = e.srcElement.value;
+    e.target.previousElementSibling.classList.remove('hidden');
+    e.target.classList.add('hidden');
+    if (e.target.classList[1] == 'title-input') {
+      targetIdea.title = e.srcElement.value
+    }
+    if (e.target.classList[1] == 'body-input') {
+      targetIdea.body = e.srcElement.value
+    }
+  }  
 
 
