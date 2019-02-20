@@ -60,15 +60,21 @@ function createIdea(cardBodyVal, cardTitleVal) {
 }
 
 function updateQualityLoad(target) {
-  var qualities = ['Swill', 'Plausible', 'Genius'];
+  var qualities = ['Swill', 'Plausible', 'Genius', 'Brilliant', 'Amazing'];
   if (target == 0) {
-  qualityVal = qualities[0];
+    qualityVal = qualities[0];
   } 
   else if (target == 1) {
-  qualityVal = qualities[1];
+    qualityVal = qualities[1];
   }
   else if (target == 2) {
-  qualityVal = qualities[2];
+    qualityVal = qualities[2];
+  }
+  else if (target == 3) {
+    qualityVal = qualities[3];
+  }
+  else if (target == 4) {
+    qualityVal = qualities[4];
   }
 }
 
