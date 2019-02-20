@@ -20,13 +20,13 @@ class Idea {
   
   updateQuality(e, target) {
     var qualities = ['Swill', 'Plausible', 'Genius', 'Brilliant', 'Amazing'];
-    target.innerText= qualities[currentIdeaQuality]
+    console.log(targetIdea.quality);
+    target.innerText= qualities[targetIdea.quality];
   } 
   
   upvote(i, e) {
     targetIdea.quality+= 1;
-    currentIdeaQuality = targetIdea.quality;
-    if (currentIdeaQuality > 4) {
+    if (targetIdea.quality > 4) {
       targetIdea.quality = 4;
     }
     var targetSibling1 = e.target.nextElementSibling.nextElementSibling.firstElementChild
@@ -36,8 +36,7 @@ class Idea {
   } 
   downvote(i, e) {
     targetIdea.quality-= 1;
-    currentIdeaQuality = targetIdea.quality;
-    if (currentIdeaQuality < 0) {
+    if (targetIdea.quality < 0) {
     targetIdea.quality = 0;
     }
     var targetSibling2 = e.target.nextElementSibling.firstElementChild
