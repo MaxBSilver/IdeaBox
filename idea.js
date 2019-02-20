@@ -19,7 +19,7 @@ class Idea {
   }
   
   updateQuality(e, target) {
-    var qualities = ['Swill', 'Plausible', 'Genius'];
+    var qualities = ['Swill', 'Plausible', 'Genius', 'Brilliant', 'Amazing'];
     if (currentIdeaQuality == 0) {
     target.innerText= qualities[0];
     } 
@@ -29,13 +29,18 @@ class Idea {
     else if (currentIdeaQuality == 2) {
     target.innerText= qualities[2];
     }
+    else if (currentIdeaQuality == 3) {
+    target.innerText = qualities[3];
+    }
+    else if (currentIdeaQuality == 4)
+    target.innerText = qualities[4];
   } 
   
   upvote(i, e) {
     targetIdea.quality+= 1;
     currentIdeaQuality = targetIdea.quality;
-    if (currentIdeaQuality > 2) {
-      targetIdea.quality = 2;
+    if (currentIdeaQuality > 4) {
+      targetIdea.quality = 4;
     }
     var targetSibling1 = e.target.nextElementSibling.nextElementSibling.firstElementChild
     this.updateQuality(e, targetSibling1);
