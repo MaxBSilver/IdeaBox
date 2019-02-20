@@ -6,6 +6,7 @@
   var filterBtns = document.querySelector('.filter-btns');
   var cardTitleEl = document.querySelector('.title-input');
   var searchInput = document.querySelector('#search-input');
+  // var characterCount = document.querySelector('.character-count');
   var ideas;
   var newIdea; 
   var targetIdea;
@@ -161,3 +162,28 @@ function searchIdeas() {
   });
   loadCards(searchResults);
 }
+
+setInterval(
+  function characterCounter() {
+    var message = document.getElementById('body-input');
+    var text = message.value;
+    document.getElementById('character-count').innerHTML = text.length;
+    if(text.length > 120) {
+      document.getElementById('character-count').style.color = '#FF0000';
+    } else {
+      document.getElementById('character-count').style.color = "#000";
+    }
+  }
+  , 100
+)
+
+
+
+
+
+
+
+
+
+
+

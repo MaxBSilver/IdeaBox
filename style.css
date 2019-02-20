@@ -123,6 +123,14 @@ i {
   height: 40px;
 }
 
+#character-count {
+  margin-left: 560px;
+}
+
+#character-count::after {
+  content: '/120'
+}
+
 .filter-btn,
 .btm-btn {
   color: #FFF;
