@@ -76,7 +76,7 @@ function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) {
   var card = `<section class="card-section" data-id=${ideaID}>
         <article class="card-body">
           <h2 class="card-title">${cardTitleVal}</h2>
-          <input class="creator-input title-input hidden" id="idea-input" type="text" name="title" placeholder="${cardTitleVal}">
+          <input class="creator-input title-input hidden" id="idea-input" type="text" name="title" value="${cardTitleVal}">
           <p class="card-text">${cardBodyVal}</p>
           <textarea class="creator-input body-input hidden" id="body-input" type="text" name="body" style="resize:none">${cardBodyVal}</textarea>
         </article>
@@ -101,14 +101,11 @@ function buttonChecker(e) {
   var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
   if (e.target.id === 'delete-card') {
     ideaToDelete.deleteFromStorage(i, e);
-  }
-  if (e.path[1].className === "card-body" && e.target.classList[0] !== 'creator-input') {
+  } else if (e.path[1].className === "card-body" && e.target.classList[0] !== 'creator-input') {
     editCard(e);
-  }
-  if (e.target.id === 'up-vote') {
+  } else if (e.target.id === 'up-vote') {
     ideaToDelete.upvote(i, e);
-  }
-  if (e.target.id === 'down-vote') {
+  } else if (e.target.id === 'down-vote') {
     ideaToDelete.downvote(i, e);
   }
 }
