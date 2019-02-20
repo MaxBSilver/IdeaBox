@@ -88,7 +88,7 @@ i {
 .user-flow {
   display: flex;
   max-width: 700px;
-  width: 60%;
+  width: 80%;
 }
 
 .input-wrapper {
@@ -160,7 +160,7 @@ label {
   max-width: 700px;
   min-height: 200px;
   padding: 0px 16px;
-  width: 60%;
+  width: 80%;
 }
 
 .card-title {
@@ -199,6 +199,61 @@ label {
 
 .hidden {
   display: none;
+}
+
+.card-body .creator-input {
+  margin-bottom: -10px;
+  margin-top: -10px;
+}
+
+@media (max-width: 700px) {
+  header {
+    display: block;
+    height: 200px;
+    padding-top: 20px;
+  }
+
+  h1,
+  .search-bar {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 400px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 450px) {
+  h1 {
+    font-size: 36px;
+  } 
+
+  .search-bar {
+    max-width: 350px;
+  }
+
+  h1,
+  .search-bar {
+    margin: 10px auto;
+  }
+    
+  .card-bottom-text {
+    font-size: 12px;
+  }
+
+  header {
+    height: 150px;
+  }
+
+  .filter-btn {
+    font-size: 16px;
+  }
+
+  .card-section {
+    padding: 0 7px;
+  }
 }
 
 
