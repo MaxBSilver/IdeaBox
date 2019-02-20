@@ -6,7 +6,7 @@
   var filterBtns = document.querySelector('.filter-btns');
   var cardTitleEl = document.querySelector('.title-input');
   var searchInput = document.querySelector('#search-input');
-  // var characterCount = document.querySelector('.character-count');
+  var showMoreBtn = document.querySelector('.show-more-less-btn');
   var ideas;
   var newIdea; 
   var targetIdea;
@@ -16,6 +16,7 @@
 /* Event Listeners */
 saveBtnEl.addEventListener('click', saveButton);
 filterBtns.addEventListener('click', filterIdeas);
+showMoreBtn.addEventListener('click', moreIdeas);
 searchBtnEl.addEventListener('click', searchIdeas);
 storageEl.addEventListener('click', buttonChecker);
 searchInput.addEventListener('keyup', searchIdeas);
@@ -24,12 +25,11 @@ window.addEventListener('load', loadCards(JSON.parse(localStorage.getItem('ideas
 
 /* Functions */
 function loadCards(loadArray) {
-  console.log('test');
   storageEl.innerHTML = '';
   if (!loadArray) {
       return false;
     } else {
-      for (var i = 0; i < loadArray.length; i++) {
+      for (var i = 0; i < 10; i++) {
       updateQualityLoad(loadArray[i].quality);
       generateCard(loadArray[i].title, loadArray[i].body, qualityVal, loadArray[i].id);
     }
@@ -142,17 +142,14 @@ function filterIdeas(e) {
   var ideas = localStorage.ideas || '[]';
   ideas = JSON.parse(ideas);
   var filteredQuality = e.target.id;
-  console.log(filteredQuality);
   if (filteredQuality == 5) {
     console.log(ideas);
     loadCards(ideas);
   } else {
     var filteredResults = ideas.filter(function(item){
-    return item.quality == filteredQuality;
-    })
+    return item.quality == filteredQuality; })
     loadCards(filteredResults);
   }
-  
 }
 
 
@@ -179,10 +176,22 @@ setInterval(
     } else {
       document.getElementById('character-count').style.color = "#000";
     }
-  }
-  , 100
+  } , 100
 )
 
+function moreIdeas() {
+  var ideas = localStorage.ideas || '[]';
+  ideas = JSON.parse(ideas);
+  if (!ideas) {
+      return false;
+    } else {
+      console.log('test');
+      for (var i = 10; i < 20; i++) {
+      // updateQualityLoad(ideas[i].quality);
+      generateCard(ideas[i].title, ideas[i].body, qualityVal, ideas[i].id);
+    }
+  }
+}
 
 
 

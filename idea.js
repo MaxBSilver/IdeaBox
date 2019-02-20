@@ -21,21 +21,6 @@ class Idea {
   updateQuality(e, target) {
     var qualities = ['Swill', 'Plausible', 'Genius', 'Brilliant', 'Amazing'];
     target.innerText= qualities[currentIdeaQuality]
-
-    // if (currentIdeaQuality == 0) {
-    // target.innerText= qualities[0];
-    // } 
-    // else if (currentIdeaQuality == 1) {
-    // target.innerText= qualities[1];
-    // } 
-    // else if (currentIdeaQuality == 2) {
-    // target.innerText= qualities[2];
-    // }
-    // else if (currentIdeaQuality == 3) {
-    // target.innerText = qualities[3];
-    // }
-    // else if (currentIdeaQuality == 4)
-    // target.innerText = qualities[4];
   } 
   
   upvote(i, e) {
