@@ -6,17 +6,18 @@
   var filterBtns = document.querySelector('.filter-btns');
   var cardTitleEl = document.querySelector('.title-input');
   var searchInput = document.querySelector('#search-input');
-  var showMoreBtn = document.querySelector('.show-more-less-btn');
+  var showMoreBtn = document.querySelector('.show-more-btn');
+  var showLessBtn = document.querySelector('.show-less-btn');
   var ideas;
   var newIdea; 
   var targetIdea;
-  var currentIdeaQuality;
   var qualityVal;
 
 /* Event Listeners */
 saveBtnEl.addEventListener('click', saveButton);
 filterBtns.addEventListener('click', filterIdeas);
 showMoreBtn.addEventListener('click', moreIdeas);
+showLessBtn.addEventListener('click', lessIdeas);
 searchBtnEl.addEventListener('click', searchIdeas);
 storageEl.addEventListener('click', buttonChecker);
 searchInput.addEventListener('keyup', searchIdeas);
@@ -142,8 +143,7 @@ function filterIdeas(e) {
   var ideas = localStorage.ideas || '[]';
   ideas = JSON.parse(ideas);
   var filteredQuality = e.target.id;
-  if (filteredQuality == 5) {
-    console.log(ideas);
+  if (filteredQuality == 'all') {
     loadCards(ideas);
   } else {
     var filteredResults = ideas.filter(function(item){
@@ -172,25 +172,36 @@ setInterval(
     var text = message.value;
     document.getElementById('character-count').innerHTML = text.length;
     if(text.length > 120) {
+      saveBtnEl.disabled = true;
       document.getElementById('character-count').style.color = '#FF0000';
     } else {
+      saveBtnEl.disabled = false;
       document.getElementById('character-count').style.color = "#000";
     }
   } , 100
 )
 
 function moreIdeas() {
+  showMoreBtn.classList.add('hidden');
+  showLessBtn.classList.remove('hidden');
   var ideas = localStorage.ideas || '[]';
   ideas = JSON.parse(ideas);
   if (!ideas) {
       return false;
     } else {
-      console.log('test');
-      for (var i = 10; i < 20; i++) {
-      // updateQualityLoad(ideas[i].quality);
+      for (var i = 10; i < ideas.length; i++) {
+      updateQualityLoad(ideas[i].quality);
       generateCard(ideas[i].title, ideas[i].body, qualityVal, ideas[i].id);
     }
   }
+}
+
+function lessIdeas() {
+  showMoreBtn.classList.remove('hidden');
+  showLessBtn.classList.add('hidden');
+  var ideas = localStorage.ideas || '[]';
+  ideas = JSON.parse(ideas);
+  loadCards(ideas);
 }
 
 
