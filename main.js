@@ -24,6 +24,7 @@ window.addEventListener('load', loadCards(JSON.parse(localStorage.getItem('ideas
 
 /* Functions */
 function loadCards(loadArray) {
+  console.log('test');
   storageEl.innerHTML = '';
   if (!loadArray) {
       return false;
@@ -61,21 +62,7 @@ function createIdea(cardBodyVal, cardTitleVal) {
 
 function updateQualityLoad(target) {
   var qualities = ['Swill', 'Plausible', 'Genius', 'Brilliant', 'Amazing'];
-  if (target == 0) {
-    qualityVal = qualities[0];
-  } 
-  else if (target == 1) {
-    qualityVal = qualities[1];
-  }
-  else if (target == 2) {
-    qualityVal = qualities[2];
-  }
-  else if (target == 3) {
-    qualityVal = qualities[3];
-  }
-  else if (target == 4) {
-    qualityVal = qualities[4];
-  }
+  qualityVal = qualities[target];
 }
 
 
@@ -103,9 +90,15 @@ function generateCard(cardTitleVal, cardBodyVal, qualityVal, ideaID) {
 function buttonChecker(e) {
   e.preventDefault();
   ideaTargeter(e);
-  console.log(targetIdea);
+  if (!targetIdea) {
+    return false
+  }
   var i = ideas.findIndex(i => i.id === targetIdea.id);
   var ideaToDelete = new Idea(ideas[i].id, ideas[i].title, ideas[i].body, ideas[i].ideas);
+  buttonCheckerJr(e, i, ideaToDelete);
+}
+
+function buttonCheckerJr(e, i, ideaToDelete) {
   if (e.target.id === 'delete-card') {
     ideaToDelete.deleteFromStorage(i, e);
   } else if (e.path[1].className === "card-body" && e.target.classList[0] !== 'creator-input') {
@@ -114,6 +107,8 @@ function buttonChecker(e) {
     ideaToDelete.upvote(i, e);
   } else if (e.target.id === 'down-vote') {
     ideaToDelete.downvote(i, e);
+  } else {
+    return false;
   }
 }
 
@@ -147,11 +142,19 @@ function filterIdeas(e) {
   var ideas = localStorage.ideas || '[]';
   ideas = JSON.parse(ideas);
   var filteredQuality = e.target.id;
-  var filteredResults = ideas.filter(function(item){
+  console.log(filteredQuality);
+  if (filteredQuality == 5) {
+    console.log(ideas);
+    loadCards(ideas);
+  } else {
+    var filteredResults = ideas.filter(function(item){
     return item.quality == filteredQuality;
-  })
-  loadCards(filteredResults);
+    })
+    loadCards(filteredResults);
+  }
+  
 }
+
 
 function searchIdeas() {
   var searchResults = [];

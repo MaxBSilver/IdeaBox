@@ -100,8 +100,11 @@ i {
 
 .creator-label {
   display:flex;
+  display: inline-block;
   font-weight:300;
   margin-bottom: 10px;
+  margin-right: 0;
+  width: 200px;
 }
 
 .title-input {
@@ -124,7 +127,9 @@ i {
 }
 
 #character-count {
-  margin-left: 560px;
+  float: right;
+  margin-right: 5px;
+  margin-top: 10px;
 }
 
 #character-count::after {
@@ -221,6 +226,14 @@ label {
     padding-top: 20px;
   }
 
+  .filter-btns {
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    width: 33%;
+  }
+
   h1,
   .search-bar {
     margin: 20px auto;
@@ -239,7 +252,12 @@ label {
   } 
 
   .search-bar {
-    max-width: 350px;
+    width: 280px;
+  }
+
+  .search-bar > *,
+   #search-input {
+    height: 30px;
   }
 
   h1,
@@ -252,11 +270,13 @@ label {
   }
 
   header {
-    height: 150px;
+    height: 120px;
+    padding-top: 5px;
   }
 
   .filter-btn {
     font-size: 16px;
+    font-weight: 300;
   }
 
   .card-section {
