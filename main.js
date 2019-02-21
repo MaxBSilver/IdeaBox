@@ -204,13 +204,3 @@ function lessIdeas() {
   ideas = JSON.parse(ideas);
   loadCards(ideas);
 }
-
-
-
-
-
-
-
-
-
-
