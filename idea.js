@@ -20,7 +20,6 @@ class Idea {
   
   updateQuality(e, target) {
     var qualities = ['Swill', 'Plausible', 'Genius', 'Brilliant', 'Amazing'];
-    console.log(targetIdea.quality);
     target.innerText= qualities[targetIdea.quality];
   } 
   
