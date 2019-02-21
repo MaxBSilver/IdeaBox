@@ -7,16 +7,18 @@ var cardTitleEl = document.querySelector('.title-input');
 var searchInput = document.querySelector('#search-input');
 var showMoreBtn = document.querySelector('.show-more-btn');
 var showLessBtn = document.querySelector('.show-less-btn');
+var characterCount = document.querySelector('#character-count');
 var ideas;
 
 saveBtnEl.addEventListener('click', saveButton);
-filterBtns.addEventListener('click', filterIdeas);
 showMoreBtn.addEventListener('click', moreIdeas);
 showLessBtn.addEventListener('click', lessIdeas);
+filterBtns.addEventListener('click', filterIdeas);
 searchBtnEl.addEventListener('click', searchIdeas);
 storageEl.addEventListener('click', buttonChecker);
 searchInput.addEventListener('keyup', searchIdeas);
 storageEl.addEventListener('keyup', submitCardChange);
+cardBodyEl.addEventListener('input', characterCounter);
 window.addEventListener('load', loadCards(JSON.parse(localStorage.getItem('ideas'))) || []);
 
 function loadCards(loadArray) {
@@ -116,6 +118,8 @@ function buttonCheckerJr(e, i, ideaToDelete) {
 function clearInputs() {
   cardTitleEl.value = '';
   cardBodyEl.value = '';
+  characterCount.innerHTML = 0;
+  saveBtnEl.disabled = true;
 }
 
 function editCard(e) {
@@ -167,20 +171,18 @@ function searchIdeas() {
   loadCards(searchResults);
 }
 
-setInterval(
-  function characterCounter() {
-    var message = document.getElementById('body-input');
-    var text = message.value;
-    document.getElementById('character-count').innerHTML = text.length;
-    if(text.length > 120) {
-      saveBtnEl.disabled = true;
-      document.getElementById('character-count').style.color = '#FF0000';
-    } else {
-      saveBtnEl.disabled = false;
-      document.getElementById('character-count').style.color = "#000";
-    }
-  } , 100
-)
+function characterCounter() {
+  var message = cardBodyEl;
+  var text = message.value;
+  characterCount.innerHTML = text.length;
+  if(text.length > 120) {
+    saveBtnEl.disabled = true;
+    characterCount.style.color = '#FF0000';
+  } else {
+    saveBtnEl.disabled = false;
+    characterCount.style.color = "#000";
+  }
+}
 
 function moreIdeas() {
   showMoreBtn.classList.add('hidden');
@@ -192,7 +194,7 @@ function moreIdeas() {
     } else {
       storageEl.innerHTML = '';
       for (var i = 0; i < ideas.length; i++) {
-      loadCardsJr(ideas, i);
+        loadCardsJr(ideas, i);
     }
   }
 }
