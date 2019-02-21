@@ -32,7 +32,7 @@ header {
 }
 
 h1 {
-  color: #B2A1B1;
+  color: #AFA5CD;
   font-size: 52px;
   font-weight: 800;
   margin: 30px 1em;
@@ -154,11 +154,21 @@ label {
 }
 
 .filter-btn {
-  background-color: #B2A1B1;
+  background-color: #AFA5CD;
+  margin-top: 11px;
 }
 
 .show-more-less-btn {
   margin-top: 0;
+}
+
+#js-save-btn:active {
+  background-color: #5D5C6B;
+}
+
+#js-save-btn:disabled {
+  background-color: #C1CECD;
+  cursor: auto;
 }
 
 /* bottom */
@@ -183,12 +193,14 @@ label {
 
 .card-body {
   border-bottom: 2px solid #d2cccd;
-  padding: 16px 0px;
+  padding: 16px 0px 0px 0px;
+  max-width: 665px;
 }
 
 .card-text {
   color: #6A686A;
   font-size: 18px;
+  max-width: 665px;
 }
 
 .card-bottom {
@@ -237,8 +249,8 @@ label {
   h1,
   .search-bar {
     margin: 20px auto;
-    width: 90%;
     max-width: 400px;
+    width: 90%;
   }
 
   h1 {
