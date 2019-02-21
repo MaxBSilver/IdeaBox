@@ -26,7 +26,7 @@ function loadCards(loadArray) {
   if (!loadArray) {
       return;
     } else if (loadArray.length <= 10) {
-      for (var i = 0; i < 10; i++) {
+      for (var i = 0; i < loadArray.length; i++) {
         loadCardsJr(loadArray, i);
       }
     } else {
