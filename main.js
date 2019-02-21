@@ -27,18 +27,18 @@ function loadCards(loadArray) {
       return;
     } else if (loadArray.length <= 10) {
       for (var i = 0; i < 10; i++) {
-        loadCardsJr(loadArray, i)
+        loadCardsJr(loadArray, i);
       }
     } else {
       for (var i = loadArray.length - 10; i < loadArray.length; i++) {
-        loadCardsJr(loadArray, i)
+        loadCardsJr(loadArray, i);
     }
   }
 }
 
 function loadCardsJr(loadArray, i) {
   updateQualityLoad(loadArray[i].quality);
-  generateCard(loadArray[i].title, loadArray[i].body, qualityVal, loadArray[i].id)
+  generateCard(loadArray[i].title, loadArray[i].body, qualityVal, loadArray[i].id);
 }
 
 function saveButton(event) {
