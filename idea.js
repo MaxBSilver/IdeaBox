@@ -6,10 +6,12 @@ class Idea {
     this.quality = 0;
     this.saveToStorage();
   }
+
   saveToStorage() {
     var stringyIdeas = JSON.stringify(ideas);
     localStorage.setItem('ideas', stringyIdeas);
   }
+
   deleteFromStorage(i, e) {
     e.target.parentElement.parentElement.remove();
     var ideasString = localStorage.ideas || [];
@@ -17,10 +19,12 @@ class Idea {
     ideas.splice(i, 1);
     localStorage.ideas = JSON.stringify(ideas);
   }
+
   updateQuality(e, target) {
     var qualities = ['Swill', 'Plausible', 'Genius', 'Brilliant', 'Amazing'];
     target.innerText= qualities[targetIdea.quality];
   }  
+
   upvote(i, e) {
     targetIdea.quality+= 1;
     if (targetIdea.quality > 4) {
@@ -30,6 +34,7 @@ class Idea {
     this.updateQuality(e, targetSibling1);
     this.updateStorage(i);
   } 
+
   downvote(i, e) {
     targetIdea.quality-= 1;
     if (targetIdea.quality < 0) {
@@ -39,11 +44,13 @@ class Idea {
     this.updateQuality(e, targetSibling2);
     this.updateStorage(i);
   }
+
   updateStorage(i) {
     ideas.splice(i, 1, targetIdea);
     localStorage.clear();
     localStorage.setItem('ideas', JSON.stringify(ideas));
   }
+  
   updateContent(e) {
     e.target.previousElementSibling.innerText = e.srcElement.value;
     e.target.previousElementSibling.classList.remove('hidden');
