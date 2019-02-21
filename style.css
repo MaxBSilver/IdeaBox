@@ -162,6 +162,12 @@ label {
   margin-top: 0;
 }
 
+#js-save-btn:hover,
+.show-more-btn:hover {
+  background-color: #322A2F;
+  cursor: pointer;
+}
+
 #js-save-btn:active {
   background-color: #5D5C6B;
 }
@@ -230,6 +236,8 @@ label {
   margin-bottom: -10px;
   margin-top: -10px;
 }
+
+/*----- Media Queries -------*/
 
 @media (max-width: 700px) {
   header {
