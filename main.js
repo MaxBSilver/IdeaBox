@@ -25,11 +25,11 @@ function loadCards(loadArray) {
   storageEl.innerHTML = '';
   if (!loadArray) {
       return;
-    } else if (loadArray.length <= 10) {
+  } else if (loadArray.length <= 10) {
       for (var i = 0; i < loadArray.length; i++) {
         loadCardsJr(loadArray, i);
       }
-    } else {
+  } else {
       for (var i = loadArray.length - 10; i < loadArray.length; i++) {
         loadCardsJr(loadArray, i);
     }
